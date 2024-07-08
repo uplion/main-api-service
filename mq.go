@@ -50,7 +50,7 @@ func (p *ProducerCache) GetProducer(topic string) (pulsar.Producer, error) {
 	prod, ok := p.cache[topic]
 	p.mu.RUnlock()
 	if ok {
-		return prod.(pulsar.Producer), nil
+		return prod, nil
 	}
 
 	producer, err := (*p.client).CreateProducer(pulsar.ProducerOptions{
