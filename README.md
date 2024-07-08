@@ -68,9 +68,9 @@ The data is in JSON format and has the following structure:
 }
 ```
 
-### Example
+#### Example
 
-#### stream=true
+##### stream=true
 
 ```json
 {
@@ -94,7 +94,7 @@ The data is in JSON format and has the following structure:
 }
 ```
 
-#### stream=false
+##### stream=false
 
 ```json
 {
@@ -119,9 +119,9 @@ The data is in JSON format and has the following structure:
 
 The values of `.stream` and `.data.stream` are generally the same (if `.data.stream` is not set, `.stream` is `false`). When `true`, the worker node must send data in real-time through WebSocket. Even if the upstream API/local model does not support streaming, the worker node should still send responses in WebSocket and streaming format. The timing for establishing the WebSocket can be flexible (e.g., if streaming is not supported but requested, the WebSocket can be established after the response is complete to send the result).
 
-## Response Format
+### Response Format
 
-### stream=true
+#### stream=true
 
 **Request Not Completed**
 
@@ -147,7 +147,7 @@ The values of `.stream` and `.data.stream` are generally the same (if `.data.str
 }
 ```
 
-### stream=false
+#### stream=false
 
 ```json5
 {
@@ -156,4 +156,14 @@ The values of `.stream` and `.data.stream` are generally the same (if `.data.str
     // The body of the original response remains unchanged
   }
 }
+```
+
+
+## Health Check
+
+The service provides a health check endpoint at `/health`. 
+
+```bash
+❯ curl http://localhost:8080/health
+{"status":"ok"}
 ```

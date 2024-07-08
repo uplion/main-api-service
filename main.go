@@ -254,6 +254,9 @@ func main() {
 			}
 		}
 	})
+	r.GET("/health", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"status": "ok"})
+	})
 
 	port := os.Getenv("PORT")
 	if port == "" {
