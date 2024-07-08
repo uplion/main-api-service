@@ -1,0 +1,22 @@
+{
+    "name": "worker",
+    "module": "index.ts",
+    "devDependencies": {
+        "@types/node": "latest",
+        "tsc-watch": "^6.2.0",
+        "typescript": "^5.5.3"
+    },
+    "dependencies": {
+        "@types/ws": "^8.5.10",
+        "axios": "^1.7.2",
+        "dotenv": "^16.4.5",
+        "eventsource-parser": "^1.1.2",
+        "pulsar-client": "^1.11.1",
+        "ws": "^8.18.0"
+    },
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc-watch --onSuccess 'node dist/index.js'",
+        "start": "node dist/index.js"
+    }
+}
