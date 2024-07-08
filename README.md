@@ -10,19 +10,43 @@ This service accepts client API requests, processes them, and sends the data to 
 4. `TIMEOUT`: The client timeout duration, default is 5 minutes. The format should follow the specification at https://pkg.go.dev/time#ParseDuration.
 5. `DEBUG`: When set, the service runs in debug mode.
 
-## Build and Run
+## Run
 
-To compile the service:
-
-```bash
-go build
-```
-
-To run the service directly:
+First, you should start Pulsar, and then run the service in host mode:
 
 ```bash
-go run .
+docker run -it \
+  -e PULSAR_URL=pulsar://localhost:6650 \
+  --network host \
+  youxam/uplion-main:latest
 ```
+
+The service listens on port 8080 by default.
+
+Alternatively, you can run it in bridge mode:
+
+```bash
+# Map the container's port 8080 to the host's port 8080
+# Replace <HOST_IP> with the actual host IP address
+docker run -it \
+  -p 8080:8080 \
+  -e PULSAR_URL=pulsar://<HOST_IP>:6650 \
+  youxam/uplion-main:latest
+```
+
+You can read the [worker](./test/worker/README.md) documentation to learn how to run the test worker node. If the worker node starts successfully, you can now call the API using the following commands:
+
+```bash
+bash test/ai.sh
+```
+
+or
+
+```bash
+bash test/ai.sh stream
+```
+
+This will invoke the API with the respective parameters.
 
 ## API Specification
 
