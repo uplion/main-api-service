@@ -141,7 +141,11 @@ func main() {
 					select {
 					case msg, ok := <-receive:
 						if !ok {
-							buffer.Write([]byte("[DONE]\n\n"))
+							_, err := w.Write([]byte("data: [DONE]\n\n"))
+							if err != nil {
+								return false
+							}
+							w.(http.Flusher).Flush()
 							return false
 						}
 						buffer.Write(msg)
