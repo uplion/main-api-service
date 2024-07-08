@@ -32,7 +32,7 @@ Data is sent to the topic `"model-${modelName}"`, for example, `model-gpt-3.5-tu
 
 The data is in JSON format and has the following structure:
 
-```json
+```json5
 {
   "request_id": string,
   "stream": boolean,
@@ -101,7 +101,7 @@ The values of `.stream` and `.data.stream` are generally the same (if `.data.str
 
 **Request Not Completed**
 
-```json
+```json5
 {
   "request_id": string,
   "end": false,
@@ -113,7 +113,7 @@ The values of `.stream` and `.data.stream` are generally the same (if `.data.str
 
 **Request Completed**
 
-```json
+```json5
 {
   "request_id": string,
   "end": true,
@@ -125,7 +125,7 @@ The values of `.stream` and `.data.stream` are generally the same (if `.data.str
 
 ### stream=false
 
-```json
+```json5
 {
   "request_id": string,
   "data": {
