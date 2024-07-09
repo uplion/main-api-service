@@ -30,6 +30,9 @@ func main() {
 	var clientsMapMutex sync.RWMutex
 	var clientsStreamMapMutex sync.RWMutex
 
+	hostname := fqdn()
+	log.Println("FQDN:", hostname)
+
 	timeout := 5 * time.Minute
 	if os.Getenv("TIMEOUT") != "" {
 		timeout_env, err := time.ParseDuration(os.Getenv("TIMEOUT"))
@@ -263,7 +266,7 @@ func main() {
 		port = "8080"
 	}
 
-	base_url = "http://localhost:" + port
+	base_url = "http://" + hostname + ":" + port
 
 	log.Println("Server started on port", port)
 	log.Printf("\tWorker Nodes should send task results to `%s/res` or `%s/res/ws`\n", base_url, base_url)
