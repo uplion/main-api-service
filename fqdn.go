@@ -27,13 +27,11 @@ func fqdn() string {
 			fmt.Printf("Error looking up address: %v\n", err)
 			continue
 		}
-
-		for _, name := range names {
-			if strings.HasSuffix(name, ".") {
-				name = name[:len(name)-1]
-			}
-			return name
+		if len(names) == 0 {
+			continue
 		}
+
+		return strings.TrimSuffix(names[0], ".")
 	}
 
 	log.Fatalf("Could not find FQDN for %s\n", hostname)
