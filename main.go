@@ -90,6 +90,9 @@ func main() {
 			Stream:    stream,
 			Data:      rawBody,
 			EndPoint:  base_url + "/res",
+			MetaData: &MetaData{
+				Headers: &c.Request.Header,
+			},
 		}
 
 		if stream {

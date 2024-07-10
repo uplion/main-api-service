@@ -1,12 +1,20 @@
 package main
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"net/http"
+)
 
 type Task struct {
 	RequestID string          `json:"request_id"`
 	Stream    bool            `json:"stream"`
 	Data      json.RawMessage `json:"data"`
 	EndPoint  string          `json:"endpoint"`
+	MetaData  *MetaData       `json:"metadata"`
+}
+
+type MetaData struct {
+	Headers *http.Header `json:"headers"`
 }
 
 type ClientRequest struct {
