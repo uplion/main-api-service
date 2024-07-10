@@ -20,7 +20,7 @@ async function handleMessage(content: string) {
     const { stream, endpoint, data, request_id } = body;
 
     console.log('Received message:');
-    console.log(body);
+    console.log(JSON.stringify(body, null, 2));
 
     if (stream) {
         const ws = new WebSocket(endpoint);
