@@ -89,14 +89,14 @@ func main() {
 			RequestID: requestID,
 			Stream:    stream,
 			Data:      rawBody,
-			EndPoint:  base_url + "/res",
+			EndPoint:  "http://" + base_url + "/res",
 			MetaData: &MetaData{
 				Headers: &c.Request.Header,
 			},
 		}
 
 		if stream {
-			task.EndPoint = base_url + "/res/ws"
+			task.EndPoint = "ws://" + base_url + "/res/ws"
 		}
 
 		producer, err := producerCache.GetProducer("model-" + request.Model)
@@ -269,7 +269,7 @@ func main() {
 		port = "8080"
 	}
 
-	base_url = "http://" + hostname + ":" + port
+	base_url = hostname + ":" + port
 
 	log.Println("Server started on port", port)
 	log.Printf("\tWorker Nodes should send task results to `%s/res` or `%s/res/ws`\n", base_url, base_url)
