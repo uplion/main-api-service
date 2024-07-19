@@ -56,7 +56,9 @@ func main() {
 	if os.Getenv("DEBUG") == "" {
 		gin.SetMode(gin.ReleaseMode)
 	}
-	r := gin.Default()
+	r := gin.New()
+
+	r.Use(gin.Recovery())
 
 	r.POST("/api/v1/chat/completions", func(c *gin.Context) {
 		var rawBody []byte
